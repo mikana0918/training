@@ -17,14 +17,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        // ④DBから記事情報を取得して変数に代入。
-        // $articles = Article::all();
+        $articles = Article::Paginate(10);
 
-        // 更新した順に並び替え
-        $articles = Article::orderby('created_at', 'desc')->get();
-
-        //③記事一覧画面を表示。articleというリンク先（名前？）についてはlayouts/dashboardというものをviewさせるという意味になる！compactには上記の変数を入れており、DBからのデータを反映させている。
-        return view('layouts/dashboard', compact('articles'));
+        return view('layouts/dashboard', ['articles' => $articles]);
     }
 
     /**

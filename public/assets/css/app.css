@@ -106,8 +106,11 @@ p {
 
 #main ul {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 12px;
+    justify-content: center;
+    align-items: center;
+    padding: inherit;
 }
 
 #main input textarea {
@@ -128,6 +131,9 @@ p {
 #main div {
     display: flex;
     gap: 15px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Mobile
@@ -164,3 +170,11 @@ p {
 #main #show  p {
             white-space: pre-line;
         }
+
+.pagination{
+    font-size: 10px;
+}
+
+.pagination li{
+    display: inline-block;
+}
