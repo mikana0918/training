@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,17 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-// ①リンク先で/が指定されたらarticleという名前がついたページに遷移する
-Route::redirect('/', 'article');
-
-// ②articleという名前がついたページにいくと、ArticleControllerのクラスが呼び出される
+Route::redirect("/", "article");
 Route::resource('article', ArticleController::class);
+
+// 認証ルート
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// ログイン必要な画面のルート定義
+Route::middleware(['auth'])->group(function() {
+  // TODO: DashboardControllerを作成
+  // TODO: ここに投稿フォームを移動する
+  Route::get('/dashboard', [DashboardController::class, 'index'])->name("admin.index");
+});
