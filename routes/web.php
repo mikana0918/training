@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\ArticleControllerOwner;
+use App\Http\Controllers\ArticleControllerShow;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
@@ -19,12 +19,12 @@ use App\Http\Controllers\HomeController;
 */
 
 // 見るだけのルーティング
-Route::get('/', 'App\Http\Controllers\ArticleController@index');
+Route::get('/', 'App\Http\Controllers\ArticleControllerShow@index');
 
 
 // 認証ルート。グループ化してリソースコントローラーに認証機能をつけた。
-// /articleとリンク先を指定するとmiddleware発動しlogin画面に遷移。
+// Routeの部分で/dashboardとリンク先を指定するとmiddleware発動しlogin画面に遷移。login後のリダイレクト先は
 Auth::routes();
 Route::group(['middleware'=> 'auth'],function(){
-    Route::resource('article', ArticleControllerOwner::class);
+    Route::resource('dashboard', ArticleController::class);
 });

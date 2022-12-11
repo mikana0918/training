@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form action="{{route('article.update', ['article' => $article->id])}}" method="post">
+    <form action="{{route('dashboard.update', ['dashboard' => $article->id])}}" method="post">
         @csrf
         @method('put')
         <ul>

@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <form action="{{route('article.store')}}" method="post">
+    <form action="{{route('dashboard.store')}}" method="post">
         @csrf
         <ul>
             <li><input type="text" name="title" id="title" placeholder="記事タイトル" required autofocus></li>
@@ -14,7 +14,7 @@
             <li>
                 <div>
                     <button type="submit">投稿</button><br>
-                    <button type="button" onclick="location.href='{{route('article.index')}}'">戻る</button>
+                    <button type="button" onclick="location.href='{{route('dashboard.index')}}'">戻る</button>
                 </div>
             </li>
         </ul>
