@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ArticleControllerOwner;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +18,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::redirect("/", "article");
-Route::resource('article', ArticleController::class);
+// 見るだけのルーティング
+Route::get('/', 'App\Http\Controllers\ArticleController@index');
 
-// 認証ルート
+
+// 認証ルート。グループ化してリソースコントローラーに認証機能をつけた。
+// /articleとリンク先を指定するとmiddleware発動しlogin画面に遷移。
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-// ログイン必要な画面のルート定義
-Route::middleware(['auth'])->group(function() {
-  // TODO: DashboardControllerを作成
-  // TODO: ここに投稿フォームを移動する
-  Route::get('/dashboard', [DashboardController::class, 'index'])->name("admin.index");
+Route::group(['middleware'=> 'auth'],function(){
+    Route::resource('article', ArticleControllerOwner::class);
 });
