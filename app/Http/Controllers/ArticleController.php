@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +21,7 @@ class ArticleController extends Controller
     {
         $articles = Article::orderBy('created_at', 'desc')->Paginate(10);
 
-        return view('layouts/dashboard', ['articles' => $articles]);
+        return view('layouts/create', ['articles' => $articles]);
     }
 
     /**
