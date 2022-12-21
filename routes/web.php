@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,15 @@ use App\Http\Controllers\ArticleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// ①リンク先で/が指定されたらarticleという名前がついたページに遷移する
-Route::redirect('/', 'article');
-
-// ②articleという名前がついたページにいくと、ArticleControllerのクラスが呼び出される
-Route::resource('article', ArticleController::class);
+Auth::routes();
+Route::group(['middleware'=> 'auth'],function(){
+    Route::controller(ArticleController::class)->group(function() {
+        Route::get('/index', 'index')->name('index');
+        Route::get('article/create', 'create')->name('article.create');
+        Route::post('article/create', 'store')->name('article.store');
+        Route::patch('article/{id}/update', 'update')->name('article.update');
+        Route::get('article/{id}/edit', 'edit')->name('article.edit');
+        Route::get('article/{id}', 'show')->name('article.show');
+        Route::delete('article/{id}/destroy', 'destroy')->name('article.destroy');
+    });
+});
