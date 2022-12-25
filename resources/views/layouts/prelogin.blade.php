@@ -22,7 +22,7 @@
         <div id="app" style="width: 100%;">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ url('/dashboard') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel')  }}  - 管理画面
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -69,28 +69,19 @@
                 </div>
             </nav>
         </div>
-        <div class="contents_separate">
-            <div class="header">
-                <ul>
-                    <li class="header-name">管理画面</li>
-                    <a href="{{route('dashboard')}}"><li class="tab is-active">記事一覧</li></a>
-                    <a href="{{route('article.create')}}" class="tab"><li class="tab">新規投稿</li></a>
-                </ul>
-            </div>
+        <div class="contents_separate login">
             <div class="main">
                 <div class="main-contents">
-                    <ul>
-                        {{--            <li><a href="{{route('article.create')}}" class="btn">新規投稿</a></li>--}}
-                    </ul>
                     <div class="contents">
                         <div class="contents-list">
-                            @yield('article_list')
-                            @yield('article_post')
+                            <div class="login_form">
+                                @yield('article_list')
+                                @yield('article_post')
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-{{--        <script src="{{asset('/assets/js/app.js')}}"></script>--}}
     </body>
 </html>

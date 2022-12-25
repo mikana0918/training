@@ -1,3 +1,6 @@
+{{--このファイルはapp.blade.phpに出力されている。--}}
+{{--具体的には、このファイルの@section等がapp.blade.phpの@yieldに埋め込まれている。--}}
+{{--つまりスケルトン（雛形）がapp.blade.phpで、インスタンス（具体的なデータ群）がこのファイルにあたる。--}}
 @extends('layouts.app')
 
 @section('header')
@@ -8,20 +11,7 @@
     <p>{{$article->content}}</p>
     <ul id="blog-menu">
         <li>
-            <a href="{{route('article.edit', $article->id)}}" class="btn">編集</a>
-        </li>
-        <li>
-            <form action="{{route('article.destroy', $article->id)}}" method="post" onsubmit="return confirm('ほんまに消してええんか？')">
-                @method('delete')
-                @csrf
-                <button type="submit" class="btn">削除</button>
-            </form>
-        </li>
-        <li>
             <a href="{{route('index')}}" class="btn">戻る</a>
         </li>
     </ul>
-    <div id="show">
-        {{-- {!! Str::markdown($article->content) !!} --}}
-    </div>
 @endsection

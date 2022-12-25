@@ -1,0 +1,23 @@
+@extends('layouts.admin')
+
+@section('article_post')
+    <div class="article_detail">
+        <h1>{{$article->title}}</h1>
+        <p>{{$article->content}}</p>
+        <ul>
+            <li>
+                <a href="{{route('article.edit', $article->id)}}" class="btn">編集</a>
+            </li>
+            <li>
+                <form action="{{route('article.destroy', $article->id)}}" method="post" onsubmit="return confirm('ほんまに消してええんか？')">
+                @method('delete')
+                @csrf
+                <button type="submit" class="btn">削除</button>
+                </form>
+            </li>
+            <li>
+                <button type="button" class="btn" onclick="location.href='{{url()->previous()}}'">戻る</button>
+            </li>
+        </ul>
+    </div>
+@endsection
