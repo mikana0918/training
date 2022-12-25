@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
-@section('article_post')
+@section('article.post')
     <div class="article_detail">
         <h1>{{$article->title}}</h1>
         <p>{{$article->content}}</p>
         <ul>
             <li>
-                <a href="{{route('article.edit', $article->id)}}" class="btn">編集</a>
+                <a href="{{route('dashboard.article.edit', $article->id)}}" class="btn">編集</a>
             </li>
             <li>
-                <form action="{{route('article.destroy', $article->id)}}" method="post" onsubmit="return confirm('ほんまに消してええんか？')">
+                <form action="{{route('dashboard.article.destroy', $article->id)}}" method="post" onsubmit="return confirm('ほんまに消してええんか？')">
                 @method('delete')
                 @csrf
                 <button type="submit" class="btn">削除</button>

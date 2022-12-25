@@ -74,7 +74,7 @@
                 <ul>
                     <li class="header-name">管理画面</li>
                     <a href="{{route('dashboard')}}"><li class="tab is-active">記事一覧</li></a>
-                    <a href="{{route('article.create')}}" class="tab"><li class="tab">新規投稿</li></a>
+                    <a href="{{route('dashboard.article.create')}}" class="tab"><li class="tab">新規投稿</li></a>
                 </ul>
             </div>
             <div class="main">
@@ -84,8 +84,8 @@
                     </ul>
                     <div class="contents">
                         <div class="contents-list">
-                            @yield('article_list')
-                            @yield('article_post')
+                            @yield('article.list')
+                            @yield('article.post')
                         </div>
                     </div>
                 </div>

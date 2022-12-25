@@ -10,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ArticleController extends Controller
+class AdminDashboardController extends Controller
 {
     /**
      * @return Application|Factory|View
@@ -64,7 +64,7 @@ class ArticleController extends Controller
         //show.blade.phpから渡されたidに該当するarticleを見つけ、詳細を表示する
         $article = Article::findOrFail($id);
 
-        return view('layouts/dash_detail')
+        return view('layouts/dashboardDetail')
                 ->with(['article' => $article]);
     }
 

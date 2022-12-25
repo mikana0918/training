@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\ShowController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::controller(ShowController::class)->group(function() {
+Route::controller(ArticleController::class)->group(function() {
     Route::get('/index', 'index')->name('index');
     Route::get('/index/article/{id}', 'show')->name('article.show');
 });
@@ -24,13 +24,13 @@ Route::controller(ShowController::class)->group(function() {
 
 Auth::routes();
 Route::group(['middleware'=> 'auth'],function(){
-    Route::controller(ArticleController::class)->group(function() {
+    Route::controller(AdminDashboardController::class)->group(function() {
         Route::get('/dashboard', 'dashboard')->name('dashboard');
-        Route::get('/dashboard/article/create', 'create')->name('article.create');
-        Route::post('/dashboard/article/create', 'store')->name('article.store');
-        Route::patch('/dashboard/article/{id}/update', 'update')->name('article.update');
-        Route::get('/dashboard/article/{id}/edit', 'edit')->name('article.edit');
-        Route::get('/dashboard/article/{id}', 'show')->name('dashboard.show');
-        Route::delete('/dashboard/article/{id}/destroy', 'destroy')->name('article.destroy');
+        Route::get('/dashboard/article/create', 'create')->name('dashboard.article.create');
+        Route::post('/dashboard/article/create', 'store')->name('dashboard.article.store');
+        Route::patch('/dashboard/article/{id}/update', 'update')->name('dashboard.article.update');
+        Route::get('/dashboard/article/{id}/edit', 'edit')->name('dashboard.article.edit');
+        Route::get('/dashboard/article/{id}', 'show')->name('dashboard.article.show');
+        Route::delete('/dashboard/article/{id}/destroy', 'destroy')->name('dashboard.article.destroy');
     });
 });

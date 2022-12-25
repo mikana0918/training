@@ -1,6 +1,6 @@
 @extends('layouts.prelogin')
 
-@section('article_list')
+@section('article.list')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
