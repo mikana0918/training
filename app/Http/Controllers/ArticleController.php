@@ -15,9 +15,9 @@ class ArticleController extends Controller
     /**
      * @return Application|Factory|View
      */
-    public function index(): View|Factory|Application
+    public function dashboard(): View|Factory|Application
     {
-        $articles = Article::orderBy('created_at', 'desc')->Paginate(10);
+        $articles = Article::orderBy('updated_at', 'desc' ,'created_at', 'desc')->Paginate(10);
 
         return view('layouts/dashboard', ['articles' => $articles]);
     }
@@ -49,7 +49,7 @@ class ArticleController extends Controller
         $article->fill($form)->save();
 
         // 記事一覧画面を表示
-        return redirect()->route('index');
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -64,7 +64,7 @@ class ArticleController extends Controller
         //show.blade.phpから渡されたidに該当するarticleを見つけ、詳細を表示する
         $article = Article::findOrFail($id);
 
-        return view('layouts/show')
+        return view('layouts/dash_detail')
                 ->with(['article' => $article]);
     }
 
@@ -97,7 +97,7 @@ class ArticleController extends Controller
         unset($form['_token']);
         $article->fill($form)->save();
 
-        return redirect('index');
+        return redirect('dashboard');
     }
 
     /**
@@ -112,6 +112,6 @@ class ArticleController extends Controller
         $article= Article::find($id);
         $article->delete();
 
-        return redirect(route('index'));
+        return redirect(route('dashboard'));
     }
 }
