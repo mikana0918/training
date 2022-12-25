@@ -75,8 +75,8 @@
                     <div class="contents">
                         <div class="contents-list">
                             <div class="login_form">
-                                @yield('article_list')
-                                @yield('article_post')
+                                @yield('article.list')
+                                @yield('article.post')
                             </div>
                         </div>
                     </div>

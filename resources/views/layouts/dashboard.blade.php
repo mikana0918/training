@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-                    @section('article_list')
+                    @section('article.list')
                     <div class="panel is-show">
                         <h1>記事一覧</h1>
                             @foreach ($articles as $article)
                                 <article class="article">
-                                    <a href="{{route('dashboard.show', $article->id)}}">
+                                    <a href="{{route('dashboard.article.show', $article->id)}}">
                                         <p>
                                             @if ($article->created_at == $article->updated_at)
                                                 <time datetime="{{Str::limit($article->created_at, 20)}}">登録日時：{{Str::limit($article->created_at, 20, "")}}</time>
@@ -20,10 +20,10 @@
                             {{$articles->links()}}
                     </div>
                     @endsection
-                    @section('article_post')
+                    @section('article.post')
                     <div class="panel">
                         <p>新規投稿</p>
-                            <form action="{{route('article.store')}}" method="post">
+                            <form action="{{route('dashboard.article.store')}}" method="post">
                                 @csrf
                                 <ul>
                                     <li>

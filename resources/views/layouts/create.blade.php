@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
-@section('article_list')
+@section('article.list')
     <h1>新規投稿</h1>
 @endsection
 
-@section('article_post')
+@section('article.post')
     <div class="edit_form">
-        <form action="{{route('article.store')}}" method="post">
+        <form action="{{route('dashboard.article.store')}}" method="post">
             @csrf
             <ul>
                 <li>
