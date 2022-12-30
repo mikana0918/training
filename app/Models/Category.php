@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Category extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title', 'content',
+        'category'
     ];
 
-    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function Articles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Article::class);
     }
 }
-
