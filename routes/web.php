@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Auth;
 Route::controller(ArticleController::class)->group(function() {
     Route::get('/index', 'index')->name('index');
     Route::get('/index/article/{id}', 'show')->name('article.show');
+    Route::get('/index/category/{id}', 'category')->name('article.category');
 });
-
 
 Auth::routes();
 Route::group(['middleware'=> 'auth'],function(){

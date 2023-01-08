@@ -8,11 +8,11 @@
 @endsection
 
 @section('content')
-    @foreach ($articles as $article)
+    @foreach ($articles->getCollection() as $article)
         <article class="article">
             <a href="{{route('article.show', $article->id)}}">
                 <p>
-                    @if ($article->created_at == $article->updated_at)
+                    @if ($article->created_at === $article->updated_at)
                         <time datetime="{{Str::limit($article->created_at, 20)}}">登録日時：{{Str::limit($article->created_at, 20, "")}}</time>
                     @else
                         <time datetime="{{Str::limit($article->created_at, 20)}}">登録日時：{{Str::limit($article->created_at, 20, "")}}</time>　<time datetime="{{Str::limit($article->updated_at, 20)}}">更新日時：{{Str::limit($article->updated_at, 20, "")}}</time>
@@ -20,8 +20,30 @@
                 </p>
                 <h3>{{$article->title}}</h3>
                 <p>{{$article->content}}</p>
+                @foreach ($article->categories as $category)
+                    <p>この記事のカテゴリー：{{$category->label}}</p>
+                @endforeach
             </a>
         </article>
     @endforeach
     {{$articles->links()}}
+@endsection
+
+@section('categoryMenu')
+    <div class="categoriesSelect">
+        <ul>
+            <li>
+                記事選択
+            </li>
+            <li>
+                <a href="{{route('index')}}">全件表示</a>
+            </li>
+            @foreach($categories as $category)
+                <li><a href="{{route('article.category', $category->id)}}">{{$category->label}}</a></li>
+            @endforeach
+            <li>
+                未分類
+            </li>
+        </ul>
+    </div>
 @endsection
