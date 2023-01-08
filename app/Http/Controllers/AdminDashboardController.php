@@ -18,9 +18,11 @@ class AdminDashboardController extends Controller
      */
     public function dashboard(): View|Factory|Application
     {
-        $articles = Article::orderBy('updated_at', 'desc' ,'created_at', 'desc')->Paginate(10);
+        $articles = Article::with("categories")->orderBy('updated_at', 'desc' ,'created_at', 'desc')->paginate(10);
 
-        return view('layouts/dashboard', ['articles' => $articles]);
+        return view('layouts/dashboard', [
+            'articles' => $articles,
+        ]);
     }
 
     /**
@@ -62,8 +64,9 @@ class AdminDashboardController extends Controller
 
     public function show($id): View|Factory|Application
     {
-        //show.blade.phpから渡されたidに該当するarticleを見つけ、詳細を表示する
-        $article = Article::findOrFail($id);
+        //show.blade.phpから渡されたidに該当するarticleを見つけ、詳細を表示する。
+//        categoriesメソッドをwithすることで関連すりテーブルを紐づける
+        $article = Article::with("categories")->findOrFail($id);
 
         return view('layouts/dashboardDetail')
                 ->with(['article' => $article]);
@@ -79,9 +82,11 @@ class AdminDashboardController extends Controller
     {
          //show.blade.phpから渡されたidに該当するarticleを編集する
         $article= Article::find($id);
+        $categories = Category::all();
 
         return view('layouts/edit')
-                ->with('article',$article);
+                ->with(['article'=> $article,
+                        'categories' => $categories]);
     }
 
     /**
@@ -89,14 +94,16 @@ class AdminDashboardController extends Controller
      *
      * @param Request $request
      * @param Article $article
+     * @param Category $category
      * @return RedirectResponse
      */
-    public function update(Request $request, Article $article): RedirectResponse
+    public function update(Request $request, Article $article, Category $category): RedirectResponse
     {
-        $article = Article::find($request->id);
+        $article = Article::with('categories')->find($request->id);
         $form = $request->all();
         unset($form['_token']);
         $article->fill($form)->save();
+        $article->categories()->sync($form['categoryId']);
 
         return redirect('dashboard');
     }

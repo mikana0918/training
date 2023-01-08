@@ -4,6 +4,10 @@
     <div class="article_detail">
         <h1>{{$article->title}}</h1>
         <p>{{$article->content}}</p>
+        <?php $categoryLabels = $article->categories->pluck( 'label' ) ?>
+        <?php if (!empty($categoryLabels)){  ?>
+        <p>{{$article->categories->implode('label')}}</p>
+         <?php }?>
         <ul>
             <li>
                 <a href="{{route('dashboard.article.edit', $article->id)}}" class="btn">編集</a>
