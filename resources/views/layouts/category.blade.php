@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @foreach ($articles->getCOllection() as $article)
+    @foreach ($articles->getCollection() as $article)
         <article class="article">
             <a href="{{route('article.show', $article->id)}}">
                 <p>
