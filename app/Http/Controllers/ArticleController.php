@@ -76,7 +76,7 @@ class ArticleController extends Controller
     {
         return view('layouts/categoryUncategorized')
                 ->with([
-                    'articles' => Article::doesntHave('categories')->with('categories')->orderBy('updated_at', 'desc')->Paginate(10),
+                    'articles' => Article::doesntHave('categories')->orderBy('updated_at', 'desc')->Paginate(10),
                     'categoryList' => $this->getValidCategories()
                 ]);
     }
