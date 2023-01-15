@@ -24,6 +24,7 @@ class Article extends Model
 //        参照元はArticleクラスということでarticle_idで、参照先はcategory_idとなる。
         return $this->belongsToMany(Category::class, 'article_category', 'article_id', 'category_id', )->withTimestamps();
     }
+
     /**
      * @return hasMany
      */
