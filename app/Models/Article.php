@@ -12,7 +12,7 @@ class Article extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'content',
+        'title', 'content','updated_at', 'created_at'
     ];
 
     /**

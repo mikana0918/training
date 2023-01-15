@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -88,5 +91,22 @@ class ArticleController extends Controller
     private function getValidCategories(): Collection
     {
         return Category::with("articles")->has('articles')->get();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function commentStore(Request $request): RedirectResponse
+    {
+        //フォームに入力された内容を変数に取得
+        $form = $request->all();
+        // フォームに入力された内容をデータベースへ登録、まずインスタンスを作る
+        $comment = new Comment();
+        $comment->fill($form)->save();
+        // 記事一覧画面を表示
+        return redirect()->route('index');
     }
 }

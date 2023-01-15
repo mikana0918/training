@@ -28,6 +28,7 @@
             </header>
             <main id="main">
                 @yield('content')
+                @yield('comments')
                 @yield('categoryMenu')
                 @yield('categoryMenuCategory')
             </main>

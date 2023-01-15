@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Auth;
 Route::controller(ArticleController::class)->group(function() {
     Route::get('/index', 'index')->name('index');
     Route::get('/index/article/{id}', 'show')->name('article.show');
+    //下のルーティングは、第一引数に特定の記事内のURIを示し、第二引数にArticleControllerのcommentStoreメソッドを指定。
+    //これによりページ遷移はせずにcommentStoreメソッドが実行される。postの記述忘れずに。
+    Route::post('/index/article/{id}', 'commentStore')->name('article.show.commentStore');
     Route::get('/index/category/uncategorized', 'showUncategorized')->name('article.category.uncategorized');
     Route::get('/index/category/{id}', 'category')->name('article.category');
 });

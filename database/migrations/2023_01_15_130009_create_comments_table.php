@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('article_id')->references('id')->on('articles');
             $table->string('poster',255);
             $table->string('body', 255);
-            $table->string('address', 255);
+            $table->string('email_address', 255);
             $table->timestamps();
         });
     }

@@ -12,11 +12,50 @@
     @if(count($article->categories) > 0)
         <p>この記事のカテゴリー：{{$article->categories->implode('label')}}</p>
     @endif
-    <ul id="blog-menu">
-        <li>
-            <a href="{{route('index')}}" class="btn">戻る</a>
-        </li>
-    </ul>
+@endsection
+
+@section('comments')
+    <div class="commentForm">
+        <form action="{{route('article.show.commentStore',$article->id)}}" method="post">
+            @csrf
+            <table>
+                <tr>
+                    <th>
+                        名前（必須）：
+                    </th>
+                    <th>
+                        <input type="text" name="commented_user_name" id="comments" placeholder="名前書けよ" required autofocus>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        連絡先：
+                    </th>
+                    <th>
+                        <input type="text" name="email_address" id="comments" placeholder="メアド書けよ" required autofocus>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        コメント（必須）：
+                    </th>
+                    <th>
+                        <textarea name="body" placeholder="それって貴方の感想ですよね？" rows="5" required></textarea>
+                    </th>
+                </tr>
+            </table>
+            <div class="edit_button">
+                <button type="submit" name="article_id" value="{{$article->id}}">投稿しる！！！</button>
+            </div>
+            <div id="blog-menu">
+                <ul>
+                    <li>
+                        <a href="{{route('index')}}" class="btn">戻る</a>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
 @endsection
 
 @section('categoryMenu')
