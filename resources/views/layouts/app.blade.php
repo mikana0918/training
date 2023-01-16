@@ -29,6 +29,7 @@
             <main id="main">
                 @yield('content')
                 @yield('comments')
+                @yield('postedComments')
                 @yield('categoryMenu')
                 @yield('categoryMenuCategory')
             </main>

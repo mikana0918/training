@@ -57,6 +57,22 @@
         </form>
     </div>
 @endsection
+@section('postedComments')
+         <div class="comments-wrap">
+    @foreach ($comments as $comment)
+            <div class="comments-list">
+                <dl>
+                    <dt>名前</dt>
+                    <dd>{{$comment->commented_user_name}}</dd>
+                </dl>
+                <dl>
+                    <dt>コメント</dt>
+                    <dd>{{$comment->body}}</dd>
+                </dl>
+            </div>
+        </div>
+    @endforeach
+@endsection
 
 @section('categoryMenu')
     <div class="categoriesSelect">

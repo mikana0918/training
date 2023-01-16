@@ -366,3 +366,10 @@ body#manage:before {
     width: 70%;
     margin: auto;
 }
+.comments-list dl{
+    display: flex;
+    flex-wrap: wrap;
+}
+.comments-wrap{
+    border-top: 5px double black;
+}

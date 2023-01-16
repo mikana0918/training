@@ -43,10 +43,15 @@ class ArticleController extends Controller
         $article = Article::with("categories")->findOrFail($id);
         $categories = $this->getValidCategories();
 
+//        whereを用いて記事番号に紐づくコメントを取得
+//        categoryメソッドのwhereHasとの使い方の違いを理解すること。
+        $comments = Comment::where('article_id',$id)->get();
+
         return view('layouts/show')
                 ->with([
                     'article' => $article,
-                    'categories' => $categories
+                    'categories' => $categories,
+                    'comments' => $comments
                 ]);
     }
 
