@@ -20,9 +20,11 @@ class AdminDashboardController extends Controller
     public function dashboard(): View|Factory|Application
     {
         $articles = Article::with("categories")->orderBy('updated_at', 'desc' ,'created_at', 'desc')->paginate(10);
+        $comments = Article::withCount('comments')->get();
 
         return view('layouts/dashboard', [
             'articles' => $articles,
+            'comments' => $comments
         ]);
     }
 

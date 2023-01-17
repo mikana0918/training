@@ -23,7 +23,7 @@ class ArticleController extends Controller
                             ->orderBy('updated_at', 'desc')
                             ->paginate(10);
         $categories = $this->getValidCategories();
-        $comments = Comment::all();
+        $comments = Article::withCount('comments')->get();
 
         return view('layouts/index', [
             'articles' => $articles,

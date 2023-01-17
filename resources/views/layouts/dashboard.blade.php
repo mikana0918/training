@@ -17,6 +17,11 @@
                         @foreach ($article->categories as $category)
                              <p>この記事のカテゴリー：{{$category->label}}</p>
                         @endforeach
+                        @foreach($comments as $comment)
+                            <?php if ($comment->id === $article->id) {
+                                echo  'コメント'.$comment->comments_count.'件';
+                            }?>
+                        @endforeach
                     </a>
                 </article>
             @endforeach

@@ -25,6 +25,11 @@
                 @else
                     <p>この記事のカテゴリー：未分類</p>
                 @endif
+                @foreach($comments as $comment)
+                        <?php if ($comment->id === $article->id) {
+                        echo  'コメント'.$comment->comments_count.'件';
+                    }?>
+                @endforeach
             </a>
         </article>
     @endforeach
