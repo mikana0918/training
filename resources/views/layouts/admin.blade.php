@@ -86,6 +86,7 @@
                         <div class="contents-list">
                             @yield('article.list')
                             @yield('article.post')
+                            @yield('postedComments')
                         </div>
                     </div>
                 </div>

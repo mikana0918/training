@@ -36,5 +36,6 @@ Route::group(['middleware'=> 'auth'],function(){
         Route::get('/dashboard/article/{id}/edit', 'edit')->name('dashboard.article.edit');
         Route::get('/dashboard/article/{id}', 'show')->name('dashboard.article.show');
         Route::delete('/dashboard/article/{id}/destroy', 'destroy')->name('dashboard.article.destroy');
+        Route::delete('/dashboard/article/{id}/comment/destroy', 'destroyComment')->name('dashboard.comment.destroy');
     });
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -67,9 +68,11 @@ class AdminDashboardController extends Controller
         //show.blade.phpから渡されたidに該当するarticleを見つけ、詳細を表示する。
 //        categoriesメソッドをwithすることで関連すりテーブルを紐づける
         $article = Article::with("categories")->findOrFail($id);
+        $addComments = Comment::where('article_id',$id)->get();
 
         return view('layouts/dashboardDetail')
-                ->with(['article' => $article]);
+                ->with(['article' => $article,
+                        'addComments' => $addComments]);
     }
 
     /**
@@ -119,6 +122,21 @@ class AdminDashboardController extends Controller
         //show.blade.phpから渡されたidに該当するarticleを削除する
         $article= Article::find($id);
         $article->delete();
+
+        return redirect(route('dashboard'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function destroyComment(int $id): RedirectResponse
+    {
+        //show.blade.phpから渡されたidに該当するarticleを削除する
+        $comment= Comment::find($id);
+        $comment->delete();
 
         return redirect(route('dashboard'));
     }

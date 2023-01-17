@@ -59,8 +59,8 @@
 @endsection
 @section('postedComments')
          <div class="comments-wrap">
-    @foreach ($comments as $comment)
             <div class="comments-list">
+                @foreach ($comments as $comment)
                 <dl>
                     <dt>名前</dt>
                     <dd>{{$comment->commented_user_name}}</dd>
@@ -69,9 +69,9 @@
                     <dt>コメント</dt>
                     <dd>{{$comment->body}}</dd>
                 </dl>
+                    @endforeach
             </div>
         </div>
-    @endforeach
 @endsection
 
 @section('categoryMenu')
