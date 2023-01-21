@@ -15,6 +15,9 @@
 @endsection
 
 @section('comments')
+    <div class="commentButton">
+        <p>コメントを書く</p>
+    </div>
     <div class="commentForm">
         <form action="{{route('article.show.commentStore',$article->id)}}" method="post">
             @csrf

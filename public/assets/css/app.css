@@ -363,9 +363,24 @@ body#manage:before {
     margin: 5px;
 }
 .commentForm{
+    display: none !important;
     padding-top: 2rem;
     width: 70%;
     margin: auto;
+}
+.commentForm.appear{
+    display: block !important;
+    animation: .3s fadeIn;
+}
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 .comments-list dl{
     display: flex;
@@ -387,4 +402,16 @@ body#manage:before {
     border: 1px dashed;
     padding: 2rem;
     width: 50%;
+}
+.commentButton p{
+    border: 1px solid black;
+    color: black;
+    background: white;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+.commentButton p::before{
+    content: "+";
 }
