@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>vueを使ってaxiosを学ぶ</title>
+</head>
+
+<body>
+<div id="app">
+    <ul>
+        <li v-for="article in articles">
+            {{ article }}
+
+
+        </li>
+
+    </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            // dataメソッドに初期値を設定。
+            // mountedメソッド内でaxiosを定義。
+            // getメソッドの引数にjsonファイルへのパスを記述します。
+            // thenメソッドで読み込みに成功したら、
+            // 初期値（article）に配列としてjsonデータを渡します。
+            // catchメソッドで読み込みに失敗したらコンソールにerrorを出力
+            articles:null
+        },
+        async mounted() {
+            try {
+                const response = await axios.get(
+                    'http://127.0.0.1:8000/api/article'
+                );
+                this.articles = response.data;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+    });
+</script>
+</body>
+</html>
