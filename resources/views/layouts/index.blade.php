@@ -6,6 +6,16 @@
 @section('header')
     <h1>記事一覧</h1>
 @endsection
+@section('header-sp')
+    <div class="header-sp">
+        <div class="sp-title">
+            <p>記事一覧</p>
+        </div>
+        <div class="sp-menu">
+            <i class='fas fa-list fa-9x' style='color:#000000'></i>
+        </div>
+    </div>
+@endsection
 
 @section('content')
     @foreach ($articles->getCollection() as $article)
@@ -15,7 +25,8 @@
                     @if ($article->created_at === $article->updated_at)
                         <time datetime="{{Str::limit($article->created_at, 20)}}">登録日時：{{Str::limit($article->created_at, 20, "")}}</time>
                     @else
-                        <time datetime="{{Str::limit($article->created_at, 20)}}">登録日時：{{Str::limit($article->created_at, 20, "")}}</time>　<time datetime="{{Str::limit($article->updated_at, 20)}}">更新日時：{{Str::limit($article->updated_at, 20, "")}}</time>
+                        <time datetime="{{Str::limit($article->created_at, 20)}}">登録日時：{{Str::limit($article->created_at, 20, "")}}</time>
+                        <br><time datetime="{{Str::limit($article->updated_at, 20)}}">更新日時：{{Str::limit($article->updated_at, 20, "")}}</time>
                     @endif
                 </p>
                 <h3>{{$article->title}}</h3>
@@ -27,7 +38,7 @@
                 @endif
                 @foreach($comments as $comment)
                         <?php if ($comment->id === $article->id) {
-                        echo  'コメント'.$comment->comments_count.'件';
+                        echo '<p>'.'コメント'.$comment->comments_count.'件'.'</p>';
                     }?>
                 @endforeach
             </a>

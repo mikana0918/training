@@ -1,11 +1,31 @@
-{{--このファイルはapp.blade.phpに出力されている。--}}
-{{--具体的には、このファイルの@section等がapp.blade.phpの@yieldに埋め込まれている。--}}
-{{--つまりスケルトン（雛形）がapp.blade.phpで、インスタンス（具体的なデータ群）がこのファイルにあたる。--}}
+
 @extends('layouts.app')
 
-@section('header')
+@section('nav-menu')
+    <div class="nav-menu">
+        <nav class="nav-list">
+                @foreach($categories as $category)
+                    <p><a href="{{route('article.category', $category->id)}}">{{$category->label}}</a></p>
+                @endforeach
+        </nav>
+    </div>
+@endsection
+
+@section('header-sp')
+    <div class="header-sp">
+        <div class="sp-title">
+            <p>記事一覧</p>
+        </div>
+        <div class="sp-menu">
+            <i class='fas fa-list fa-9x' style='color:#000000'></i>
+        </div>
+    </div>
+@endsection
+
+@section('title-sp')
     <h1>{{$article->title}}</h1>
 @endsection
+
 
 @section('content')
     <p>{{$article->content}}</p>

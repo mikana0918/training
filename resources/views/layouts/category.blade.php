@@ -1,7 +1,26 @@
 @extends('layouts.app')
 
-@section('headerCategory')
-    <h1>カテゴリー：{{$category->label}}</h1>
+@section('nav-menu')
+    <div class="nav-menu">
+        <nav class="nav-list">
+{{--            @foreach($categories as $category)--}}
+{{--                <p><a href="{{route('article.category', $category->id)}}">{{$category->label}}</a></p>--}}
+{{--            @endforeach--}}
+        </nav>
+    </div>
+@endsection
+
+@section('header-sp')
+    <div class="header-sp">
+        <div class="sp-title">
+            @foreach ($articles->getCollection() as $article)
+            <p>{{$article->categories->implode('label')}}</p>
+            @endforeach
+        </div>
+        <div class="sp-menu">
+            <i class='fas fa-list fa-9x' style='color:#000000'></i>
+        </div>
+    </div>
 @endsection
 
 @section('content')
@@ -12,7 +31,8 @@
                     @if ($article->created_at === $article->updated_at)
                         <time datetime="{{Str::limit($article->created_at, 20)}}">登録日時：{{Str::limit($article->created_at, 20, "")}}</time>
                     @else
-                        <time datetime="{{Str::limit($article->created_at, 20)}}">登録日時：{{Str::limit($article->created_at, 20, "")}}</time>　<time datetime="{{Str::limit($article->updated_at, 20)}}">更新日時：{{Str::limit($article->updated_at, 20, "")}}</time>
+                        <time datetime="{{Str::limit($article->created_at, 20)}}">登録日時：{{Str::limit($article->created_at, 20, "")}}</time>　
+                        <br><time datetime="{{Str::limit($article->updated_at, 20)}}">更新日時：{{Str::limit($article->updated_at, 20, "")}}</time>
                     @endif
                 </p>
                 <h3>{{$article->title}}</h3>

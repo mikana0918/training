@@ -1,5 +1,6 @@
-/* Common
--------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+
 h1 {font-size: 1.50rem; text-transform: capitalize; margin-top: 20px;}
 h2 {font-size: 1.25rem;}
 
@@ -8,6 +9,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+body p{
+    color: black;
+    text-decoration: unset;
+}
+body h3 {
+    color: black;
+}
+body a {
+    text-decoration: unset;
 }
 body:before {
     content: "";
@@ -34,6 +46,9 @@ body:before {
     border-bottom: solid 1px #555;
     margin-bottom: 16px;
     padding-bottom: 4px;
+}
+.header-sp{
+    display: none;
 }
 /* Menu Button
  -------------------------------------------------- */
@@ -414,4 +429,126 @@ body#manage:before {
 }
 .commentButton p::before{
     content: "+";
+}
+.nav-list{
+    display: none;
+}
+
+@media screen and (max-width: 800px){
+    .header-sp{
+        display: block;
+        display: flex;
+        height: 67px;
+        width: 100%;
+        background: rgb(184 105 255 / 87%);
+        position: fixed;
+        z-index: 99;
+        justify-content: space-between;
+    }
+    .header-sp p{
+        font-size: 27px;
+        position: absolute;
+    }
+    h1{
+        display: none;
+    }
+    #header{
+        border: unset;
+    }
+    .container{
+        padding-top: 67px;
+    }
+    #main div{
+        display: none;
+    }
+    main.article{
+        margin: unset;
+        width: 100%;
+    }
+    #main .article{
+        width: 100%;
+    }
+    .commentForm{
+        display: block;
+
+    }
+    .commentForm p{
+        width: 125px;
+        margin: auto;
+
+    }
+    #main h1{
+        display: block;
+    }
+    .svg-inline--fa.fa-list.fa-w-16.fa-9x{
+        right: 30px;
+        position: absolute;
+        font-size: 45px;
+        top: 10px;
+    }
+
+    .nav-menu{
+        display: none;
+        position: relative;
+        height: 100vh;
+    }
+    .nav-menu.appear{
+        height: 100vh;
+        position: fixed;
+        width: 100vw;
+        text-align: center;
+        margin: auto;
+        display: block;
+        z-index: 99;
+        margin-top: 67px;
+        background: #fffc;
+        opacity: 1;
+    }
+    .nav-menu.appear ul{
+        margin: unset;
+        padding: unset;
+    }
+    .nav-menu.appear p{
+        list-style: none;
+        margin: 2rem;
+        font-size: 20px;
+        border-bottom: 1px dashed black;
+    }
+    .nav-menu.appear a{
+        color: black;
+    }
+    .nav-list{
+        position: absolute;
+        right: 0;
+        left: 0;
+        text-decoration: none;
+        height: 100vh;
+    }
+    .sp-title{
+        position: relative;
+        height: 67px;
+        width: 150px;
+    }
+    .sp-title p{
+        margin: unset;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+    .sp-menu{
+        position: relative;
+        height: 67px;
+        width: 100px;
+        /*left: 146px;*/
+        text-align: center;
+        cursor: pointer;
+    }
+    #main .commentButton{
+        display: block;
+        width: 126px;
+        margin: auto;
+    }
+    .commentForm.appear{
+        margin: unset;
+    }
 }

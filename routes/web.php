@@ -26,8 +26,8 @@ Route::controller(ArticleController::class)->group(function() {
     Route::get('/index/category/{id}', 'category')->name('article.category');
 });
 
-Auth::routes();
-Route::group(['middleware'=> 'auth'],function(){
+//Auth::routes();
+//Route::group(['middleware'=> 'auth'],function(){
     Route::controller(AdminDashboardController::class)->group(function() {
         Route::get('/dashboard', 'dashboard')->name('dashboard');
         Route::get('/dashboard/article/create', 'create')->name('dashboard.article.create');
@@ -38,4 +38,4 @@ Route::group(['middleware'=> 'auth'],function(){
         Route::delete('/dashboard/article/{id}/destroy', 'destroy')->name('dashboard.article.destroy');
         Route::delete('/dashboard/article/{id}/comment/destroy', 'destroyComment')->name('dashboard.comment.destroy');
     });
-});
+//});
