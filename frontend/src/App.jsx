@@ -1,9 +1,15 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import { articles } from './api/articles'
+import useSWR from 'swr'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const { data, error, isLoading } = useSWR('/api/articles', articles.list)
+
+  console.log(data, error, isLoading)
 
   return (
     <div className="App">
