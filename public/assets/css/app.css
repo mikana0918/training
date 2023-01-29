@@ -551,4 +551,7 @@ body#manage:before {
     .commentForm.appear{
         margin: unset;
     }
+    .sp-menu{
+
+    }
 }
