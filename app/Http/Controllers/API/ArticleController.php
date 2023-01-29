@@ -18,7 +18,7 @@ class ArticleController extends Controller
         $hoge = Article::all();
         return response()->json(
             [
-                "hoge" => $hoge,
+                "articles" => $hoge,
             ],
             200,
             [],

@@ -8,7 +8,6 @@ function App() {
   const [count, setCount] = useState(0)
 
   const { data, error, isLoading } = useSWR('/api/articles', articles.list)
-
   console.log(data, error, isLoading)
 
   return (
@@ -29,6 +28,14 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
+        {
+          data.articles.length > 0 && data.articles.map((el) => {
+            return <div>
+              {el.id}
+            </div>
+          })
+        }
+        <article></article>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
